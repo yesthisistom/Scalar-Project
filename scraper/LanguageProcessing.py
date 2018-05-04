@@ -1,13 +1,18 @@
 import nltk
 import string
 
-from geotext import GeoText
+try:
+    from geotext import GeoText
+except:
+    pass
+
 from collections import Counter
-from nltk.corpus import stopwords
+
+from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 
 class NLTKProcessing:
     
-    stop_words = set(stopwords.words('english'))
+    stop_words = set(ENGLISH_STOP_WORDS)
     
     def __init__(self, text):
         self._text = text
