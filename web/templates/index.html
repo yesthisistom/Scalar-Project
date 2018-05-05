@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+</head>
+<body>
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col">
+        <br><br>
+
+        <table style="margin-left: 15px;"><tbody>
+        {% for article in articles %}
+            <tr>
+                <td><a href="/article/{{article.id}}">{{article.title}} </a><br>
+                {{article.summary(50)}}... <br></td>
+                <td>{{', '.join(article.get_most_common())}}</td>
+                <td>{{article.date}} </td>
+
+            </tr>
+         {% endfor %}
+        </tbody></table>
+
+
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            {% if page > 0 %}
+                <b><a href="/{{page - 1}}">Previous Page</a></div></b>
+            {% endif %}
+        </div>
+        <div class="col-sm, text-right">
+            <b><a href="/{{page + 1}}">Next Page</a></b>
+        </div>
+    </div>
+
+    <br><br>
+</div>
+</body>
+</html>
